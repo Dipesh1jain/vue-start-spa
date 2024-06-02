@@ -7,12 +7,13 @@
 </template>
 <script>
 
-import   NavBar  from './components/Navbar.vue';
-import    PageViewer  from './components/PageViewer.vue';
+import  Navbar  from './components/Navbar.vue';
+import   PageViewer  from './components/PageViewer.vue';
 
 export default {
+  // adding components which we are going to use 
   components: {
-      NavBar,
+      Navbar,
     PageViewer
   },
   data() {
