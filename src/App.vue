@@ -2,7 +2,10 @@
   <navbar :pages="pages"  :active-Page="activePage"
     :nav-link-click="(index)=>activePage= index"></navbar>
 
-    <page-viewer :page="pages[activePage]"></page-viewer>
+<!--using if statement if pages.lenght is 0 PageViewer components will not be called -->
+
+    <page-viewer v-if="pages.length>0"
+    :page="pages[activePage]"></page-viewer>
 
 </template>
 <script>
@@ -16,6 +19,9 @@ export default {
       Navbar,
     PageViewer
   },
+  created(){
+   this.getPages()
+  },
   data() {
     return {
       // with the help of active page we are creating an index value : default 0 for home page which keeps on updating onClick Event
@@ -23,24 +29,17 @@ export default {
       activePage: 0,
       useDarkNavBar: true,
 
-      pages: [
-        {
-          link: { text: "Home", url: "index.html" },
-          pageTitle: "HOME PAGE",
-          content: "This is Home Page",
-        },
-        {
-          link: { text: "About", url: "about.html" },
-          pageTitle: "ABOUT PAGE",
-          content: "This is About Page",
-        },
-        {
-          link: { text: "Contact", url: "contact.html" },
-          pageTitle: "CONTACT PAGE",
-          content: "This is Contact Page",
-        },
-      ],
+      pages: [],
     };
   },
+  methods:{
+    // fetching data from pages.json through a method
+    // NOTE : learn more about aync and Await 
+    async getPages(){
+      let res =await fetch('pages.json')
+      let data = await res.json();
+     this.pages = data;
+    }
+  }
 };
 </script>
