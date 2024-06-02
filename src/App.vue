@@ -40,6 +40,7 @@ export default {
       let data = await res.json();
      this.pages = data;
     }
+  
   }
 };
 </script>

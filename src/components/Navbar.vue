@@ -31,10 +31,9 @@
             >{{ page.link.text }}
           </a> -->
           <navbar-link
-          :page="page"
-          :isActive="activePage==index"
-          @click.prevent="navLinkClick(index)"
-
+            :page="page"
+            :isActive="activePage == index"
+            @click.prevent="navLinkClick(index)"
           ></navbar-link>
         </li>
       </ul>
@@ -47,27 +46,42 @@
   </nav>
 </template>
 <script>
-import NavbarLink from './NavbarLink.vue'
+import NavbarLink from "./NavbarLink.vue";
 export default {
-  components:{
-    NavbarLink
+  components: {
+    NavbarLink,
   },
-   props: ['pages', 'activePage','navLinkClick'],
-            data(){
-                return {
-                    theme: 'light',
-                        };
-                    },
-            methods: {
-                changeTheme() {
-                    let theme = 'light'
-                    if (this.theme == 'light') {
-                        theme = 'dark'
-                    }
-                    this.theme = theme
-                }
-            }
+  props: ["pages", "activePage", "navLinkClick"],
+  data() {
+    return {
+      theme: "light",
+    };
+  },
+  created() {
+    this.getThemeSettings();
+  },
+  methods: {
+    changeTheme() {
+      let theme = "light";
+      if (this.theme == "light") {
+        theme = "dark";
+      }
+      this.theme = theme;
+      this.storeThemeSettings();
+    },
+
+    storeThemeSettings() {
+      // storing the theme so whenever users reloads the site we can fetch it
+      localStorage.setItem('theme', this.theme);
+    },
+    getThemeSettings() {
+      // storing the theme so whenever users reloads the site we can fetch it
+      let theme = localStorage.getItem('theme');
+
+      if (theme) {
+        this.theme = theme;
+      }
+    },
+  },
 };
-         
-        
 </script>
