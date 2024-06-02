@@ -21,7 +21,7 @@
                                         HTml based on the condition if activePage == index
                                         NOT: if a property take Hyphens "- " then need to add " '' " brakects to consider it as string 
                                         syntax ------ :class:{'propertyName=condition','propertyName2':boolean ........}-->
-          <a
+          <!-- <a
             class="nav-link"
             :class="{ active: activePage == index }"
             aria-current="page"
@@ -29,7 +29,13 @@
             :title="`this link goes to ${page.link.text} page`"
             @click.prevent="navLinkClick(index)"
             >{{ page.link.text }}
-          </a>
+          </a> -->
+          <navbar-link
+          :page="page"
+          :isActive="activePage==index"
+          @click.prevent="navLinkClick(index)"
+
+          ></navbar-link>
         </li>
       </ul>
       <form class="d-flex">
@@ -41,7 +47,11 @@
   </nav>
 </template>
 <script>
+import NavbarLink from './NavbarLink.vue'
 export default {
+  components:{
+    NavbarLink
+  },
    props: ['pages', 'activePage','navLinkClick'],
             data(){
                 return {
