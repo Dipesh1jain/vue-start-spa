@@ -75,7 +75,7 @@ return !this.pageTitle || !this.content || !this.LinkText || !this.LinkUrl
             pageTitle:'',
             content:'',
             LinkText:'',
-            LinkUrl:'',
+            LinkUrl:''
         }
     },
     methods:{
@@ -87,8 +87,10 @@ if(!this.pageTitle || !this.content || !this.LinkText || !this.LinkUrl){
 this.pageCreated({
     pageTitle:this.pageTitle,
     content:this.content,
-    LinkText:this.LinkText,
-    LinkUrl:this.LinkUrl,
+ link:{
+    text:this.LinkText,
+    url:this.LinkUrl
+ }
 })
         }
     }

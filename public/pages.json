@@ -3,16 +3,21 @@
     {
       "link": { "text": "Home", "url": "index.html" },
       "pageTitle": "HOME PAGE",
-      "content": "This is Home Page"
+      "content": "This is Home Page",
+      "published":true
     },
     {
       "link": { "text": "About", "url": "about.html" },
       "pageTitle": "ABOUT PAGE",
-      "content": "This is About Page"
+      "content": "This is About Page",
+      "published":true
+
     },
     {
       "link": { "text": "Contact", "url": "contact.html" },
       "pageTitle": "CONTACT PAGE",
-      "content": "This is Contact Page"
+      "content": "This is Contact Page",
+      "published":false
+
     }
   ]
