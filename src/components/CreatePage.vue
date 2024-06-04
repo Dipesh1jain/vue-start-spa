@@ -42,7 +42,7 @@
     </div>
     <div class="row mb-3">
     <div class="form-check">
-    <input class="form-check-input" type="checkbox">
+    <input class="form-check-input" type="checkbox" v-model="published">
     </input>
     <label class="form-check-label" for="gridCheck1">Published</label>
     </div>
@@ -75,23 +75,33 @@ return !this.pageTitle || !this.content || !this.LinkText || !this.LinkUrl
             pageTitle:'',
             content:'',
             LinkText:'',
-            LinkUrl:''
+            LinkUrl:'',
+            published:true
         }
     },
     methods:{
         submitForm(){
-if(!this.pageTitle || !this.content || !this.LinkText || !this.LinkUrl){
+            if(!this.pageTitle || !this.content || !this.LinkText || !this.LinkUrl){
     alert('please fill the form')
     return;
-}
+            }
+
 this.pageCreated({
     pageTitle:this.pageTitle,
     content:this.content,
- link:{
+    link:{
     text:this.LinkText,
     url:this.LinkUrl
- }
-})
+    }
+                        //if pusblished is not true it will not be displayed on nav bar
+
+    ,published:this.published
+                });
+            this.pageTitle='',
+            this.content='',
+            this.LinkText='',
+            this.LinkUrl='',
+            this.published=true
         }
     }
 }

@@ -12,7 +12,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lb-0">
         <!-- how normal HTML works -add more links for  future make more list items -->
         <!-- nowusing VUE's "v-for" derective which is just like for-in loop to create a multiple copies of list based on Links arr size  -->
-        <li v-for="(page, index) in pages" class="nav-item" :key="index">
+        <li v-for="(page, index) in publishedPages" class="nav-item" :key="index">
           <!-- in order to bind the data with 'href' we use directive "v-bind" or simply ":" before the property
                                     this will bind the data lets say to a link , coz '{{}}' these braces handles JS code and we simply want the link for href attriubte-->
           <!-- "v-on:" or "@ "direictive used to handle the on click or onmouseover function-->
@@ -50,6 +50,12 @@ import NavbarLink from "./NavbarLink.vue";
 export default {
   components: {
     NavbarLink,
+  },
+  computed:{
+    // creating a computed property/method which will filter all the publised pases and will diplay it on the nav bar
+    publishedPages(){
+      return this.pages.filter(p=>p.published);
+    }
   },
   props: ["pages", "activePage", "navLinkClick"],
   data() {
