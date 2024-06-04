@@ -72,6 +72,7 @@ export default{
             {
                 return false;
             }
+            return true;
         }
     }],
     computed:{

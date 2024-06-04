@@ -12,7 +12,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lb-0">
         <!-- how normal HTML works -add more links for  future make more list items -->
         <!-- nowusing VUE's "v-for" derective which is just like for-in loop to create a multiple copies of list based on Links arr size  -->
-        <li v-for="(page, index) in publishedPages" class="nav-item" :key="index">
+        <li>
           <!-- in order to bind the data with 'href' we use directive "v-bind" or simply ":" before the property
                                     this will bind the data lets say to a link , coz '{{}}' these braces handles JS code and we simply want the link for href attriubte-->
           <!-- "v-on:" or "@ "direictive used to handle the on click or onmouseover function-->
@@ -21,19 +21,13 @@
                                         HTml based on the condition if activePage == index
                                         NOT: if a property take Hyphens "- " then need to add " '' " brakects to consider it as string 
                                         syntax ------ :class:{'propertyName=condition','propertyName2':boolean ........}-->
-          <!-- <a
-            class="nav-link"
-            :class="{ active: activePage == index }"
-            aria-current="page"
-            :href="page.link.url"
-            :title="`this link goes to ${page.link.text} page`"
-            @click.prevent="navLinkClick(index)"
-            >{{ page.link.text }}
-          </a> -->
+       
           <navbar-link
+           v-for="(page, index) in publishedPages" class="nav-item" :key="index"
             :page="page"
+            :index="index"
             :isActive="activePage == index"
-            @click.prevent="navLinkClick(index)"
+            @activated="$emit('activated')"
           ></navbar-link>
         </li>
       </ul>
@@ -57,7 +51,7 @@ export default {
       return this.pages.filter(p=>p.published);
     }
   },
-  props: ["pages", "activePage", "navLinkClick"],
+  props: ["pages", "activePage"],
   data() {
     return {
       theme: "light",

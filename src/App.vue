@@ -1,11 +1,11 @@
 <template>
   <navbar :pages="pages"  :active-Page="activePage"
-    :nav-link-click="(index)=>activePage= index"></navbar>
+></navbar>
 
 <!--using if statement if pages.lenght is 0 PageViewer components will not be called -->
 
-    <!-- <page-viewer v-if="pages.length>0"
-    :page="pages[activePage]"></page-viewer> -->
+    <page-viewer v-if="pages.length>0"
+    :page="pages[activePage]"></page-viewer>
     <!-- listining  an event  using '@;' sign'-->
 <create-page
 @page-created="pageCreated">
@@ -25,7 +25,10 @@ export default {
     CreatePage
   },
   created(){
-   this.getPages()
+   this.getPages();
+   this.$bus.$on('navbarlinkActivatied',(index)=>{
+    this.activePage= index
+   });
   },
   data() {
     return {
