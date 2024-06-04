@@ -82,11 +82,11 @@ return !this.pageTitle || !this.content || !this.LinkText || !this.LinkUrl
     methods:{
         submitForm(){
             if(!this.pageTitle || !this.content || !this.LinkText || !this.LinkUrl){
-    alert('please fill the form')
-    return;
+                 alert('please fill the form')
+                return;
             }
 
-this.pageCreated({
+                         this.pageCreated({
     pageTitle:this.pageTitle,
     content:this.content,
     link:{
@@ -104,5 +104,13 @@ this.pageCreated({
             this.published=true
         }
     }
-}
+    ,
+    watch:{
+        pageTitle(newTitle,oldTitle){
+            if(this.LinkText== oldTitle){
+                this.LinkText =newTitle;
+            }
+        }
+    }
+    }
 </script>
