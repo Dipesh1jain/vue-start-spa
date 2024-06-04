@@ -6,8 +6,9 @@
 
     <!-- <page-viewer v-if="pages.length>0"
     :page="pages[activePage]"></page-viewer> -->
+    <!-- listining  an event  using '@;' sign'-->
 <create-page
-:page-created="pageCreated">
+@page-created="pageCreated">
 </create-page>
 </template>
 <script>

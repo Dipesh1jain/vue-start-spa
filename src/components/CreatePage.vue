@@ -64,7 +64,16 @@
 </template>
 <script>
 export default{
-    props:['pageCreated'],
+    // creating an array of all the events that are emitted from this compontnet for better understanding 
+    //and can also add validation if the data   binded is in correct form or not (return false id not ){Optional} lets say
+    emits:[{
+        pageCreated({pageTitle,Content,link,published}){
+            if(!pageTitle && !content &&!link&& !link.text&& !link.url && !publised) 
+            {
+                return false;
+            }
+        }
+    }],
     computed:{
 isFormInvalid(){
 return !this.pageTitle || !this.content || !this.LinkText || !this.LinkUrl
@@ -85,18 +94,19 @@ return !this.pageTitle || !this.content || !this.LinkText || !this.LinkUrl
                  alert('please fill the form')
                 return;
             }
-
-                         this.pageCreated({
+           // using public event by the method 'this.$emit' , like dispatcher.fireEvent
+this.$emit('pageCreated',{
+    
     pageTitle:this.pageTitle,
     content:this.content,
     link:{
     text:this.LinkText,
     url:this.LinkUrl
     }
-                        //if pusblished is not true it will not be displayed on nav bar
-
+     //if pusblished is not true it will not be displayed on nav bar
     ,published:this.published
-                });
+                
+})
             this.pageTitle='',
             this.content='',
             this.LinkText='',
